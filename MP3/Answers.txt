@@ -1,0 +1,33 @@
+1)  "tint"
+
+2)  a)  // constructor -> (first element, last element)
+        list<int> alist(arr, arr + sizeof(arr) / sizeof(int));
+
+    b)  list<int>::iterator iter;
+
+    c)  iter = alist.begin();
+
+    d)  2
+
+    e)  In the C++ standard, this is an undefined bahavior.
+        So, we can't know what might happen. There's no specification for it.
+        A debug build in Visual Studio will throw a debug assertion,
+        but in a release build anything could happen.
+
+        The book states:
+        "An error condition occurs if an invalid position is passed as an argument to one
+         of the list operations. Reasons for a position p to be invalid include . . .
+         p results from an illegal operation, such as attempting to perform ++p,
+         where p = L.end(), that is, attempting to access a position beyond the end
+         position"
+
+        If using a release build in Visual Studio, it appears to loop
+        back to alist.begin(). In which case
+
+        *iter = 5
+        
+    f)  25
+
+
+
+3 ) 
