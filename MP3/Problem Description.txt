@@ -1,0 +1,100 @@
+CPS 272 – Homework 3 – Due 09/30/2015
+[1] Assume that the five-element list charList contains the characters in the string "train"
+What is the sequence of list values after executing the following instructions?
+
+list<char> charList
+list<char>::iterator iter;
+
+iter = charList.begin();
+iter++;
+charList.erase(iter++);
+charList.erase(iter);
+charList.push_back('t');
+
+
+[2] Answer the next 6 questions:
+a.) Delcare a list object alist whose elements are initialized from the array
+
+int arr[] = {5, 2, 3, 8, 9, 25, 35};
+
+b.) Declare a list iterator iter
+c.) Give a statement that initializes iter so that it points at the first element of alist
+d.) Given the result of part (c). Give the value of  *iter  after the statement
+
+    iter++;
+
+e.) The following should work according to the book and does work on Unix.
+    However, in the infinite wisdom of Microsoft, it doesn't work in 
+    Visual Studio
+
+    Give the value of   *iter   after the statements 
+	iter = alist.end();
+	iter++;
+
+f.)  Give the value of   *iter  after the statements
+
+iter = alist.end();
+iter--;
+iter--;
+
+[3] PROGRAMMING: Use the following code to implement "intEntry.h" header file.
+#include <iostream>
+using namespace std;
+
+class intEntry
+{
+	public:
+		// initialize the integer value and its count
+		intEntry(int v, int c = 1);
+
+		// return value
+		int getValue() const;
+
+		// return count
+		int getCount() const;
+
+		// increment count
+		void increment();
+
+		// compare lhs and rhs using value
+		friend bool operator< (const intEntry& lhs, const intEntry& rhs);
+		friend bool operator== (const intEntry& lhs, const intEntry& rhs);
+
+		// output obj in format "value value ... value" (count times)
+		friend ostream& operator<< (ostream& ostr, const intEntry& obj);
+
+	private:
+		int value;
+			// integer value
+		int count;
+			// number of occurrences of value
+};
+
+Implement the class using inline code, and place it in the header file "intEntry.h". 
+In the main program, write a function whose prototype is
+
+	void loadPrimes(list<intEntry>& primes, int n);
+
+that uses the intEntry class to create a list that identifies the different primes and the number of occurrences of the primes in the factorization of a number. For example, with 18, the prime 2 occurs 1 time and the prime 3 occurs 2 times.
+
+Write a program that enters two integers m and n and uses the function loadPrimes( ) to create a list of the primes. Scan the list and output the prime factorization of each number. For instance, assume m = 60, and n = 18.
+
+number 60 : 2,2		3,1		5,1		(2 * 2 * 3 * 5)
+number 18 : 2,1		3,2				(2 * 3 * 3)
+
+Create a new list that consists of all the primes that are common to the m and n lists. As you indentify each such prime, take the minimum count in the two nodes, and use that as the count in the node for the new list. For instance, 2 is a prime factor of 60, and 2 is a prime factor of 18:
+
+number 60 : 2 * 2 * 3 * 5 	// 2 has count 2
+number 18 : 2 * 3 * 3		// 2 has count 1
+
+In the new list, 2 is a value with count 1 (minimum of 1 and 2). The product of the primes is the gcd of m and n. 
+
+Output the list and compute gcd(m, n).
+
+2	1
+new list: 
+
+3	1
+	
+
+gcd(60, 18) = 2 * 3 = 6

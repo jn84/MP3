@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="Answers.txt" />
+    <Text Include="Problem Description.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="intEntry.h" />
