@@ -21,6 +21,9 @@
     <Text Include="Problem Description.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="primes.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="intEntry.h">
