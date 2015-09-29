@@ -1,6 +1,5 @@
 #include <list>
 #include <cmath>
-#include <fstream>
 #include "intEntry.h"
 
 using namespace std;
@@ -14,23 +13,47 @@ bool isPrime(int number);
 void main()
 {
     list<intEntry> primeList_1, primeList_2;
-    list<int> primeNumbers;
 
-    ofstream fout;
-    fout.open("primes.txt");
-    
-    // Fill the list with all the primes that could be factors of type int
-    generatePrimeNumbers(primeNumbers);
-
-    fout.close();
-
+    loadPrimes(primeList_1, 23852892);
+    loadPrimes(primeList_2, 2328592);
+    for each (intEntry elem in primeList_1)
+        cout << elem;
+    cout << endl;
+    for each (intEntry elem in primeList_2)
+        cout << elem;
+    cout << endl;
 }
 
 void loadPrimes(list<intEntry>& primes, int n)
 {
-
+    static list<int> primeNumbers;
+    static bool isPrimeNumbersInitialized = false;
+    if (!isPrimeNumbersInitialized)
+    {
+        // Fill the list with all the primes that could be factors of type int
+        generatePrimeNumbers(primeNumbers);
+        isPrimeNumbersInitialized = true;
+    }
+    for each  (int elem in primeNumbers)
+    {
+        if (n % elem == 0)
+        {
+            primes.push_back({ elem });
+            n /= elem;
+        }
+        else
+            continue;
+        while (n % elem == 0)
+        {
+            primes.back().increment();
+            n /= elem;
+        }
+        if (n == 1)
+            break;
+    }
 }
 
+// Build a list of prime numbers so we don't have to run through and find them every time.
 void generatePrimeNumbers(list<int>& primes)
 {
     // Make sure the list is empty
