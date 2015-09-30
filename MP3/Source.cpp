@@ -1,3 +1,9 @@
+//////////////////////////////////////////////////////////////////////////
+//  Name:       Jeremy Nims
+// Class:       CPS 272, Wed 5:30 PM
+// Assignment:  MP3, Part 3 - Prime Factorization
+//////////////////////////////////////////////////////////////////////////
+
 #include <list>
 #include <cmath>
 #include "intEntry.h"
@@ -29,7 +35,7 @@ void main()
 {
     int inputNumber_1, inputNumber_2, greatestFactor;
     list<intEntry> primeList_1, primeList_2, commonPrimesList;
-    
+
     inputNumber_1 = getInput();
     inputNumber_2 = getInput();
     
@@ -40,7 +46,7 @@ void main()
     
     cout << endl << "Number " << inputNumber_1 << ": " << endl;
     printFactors(primeList_1);
-    cout << endl << "Number " << inputNumber_1 << ": " << endl;
+    cout << endl << "Number " << inputNumber_2 << ": " << endl;
     printFactors(primeList_2);
     cout << endl
         << "The greatest common factor of "

@@ -1,6 +1,12 @@
+//////////////////////////////////////////////////////////////////////////
+//  Name:       Jeremy Nims
+// Class:       CPS 272, Wed 5:30 PM
+// Assignment:  MP3, Parts 1 and 2
+//////////////////////////////////////////////////////////////////////////
+
 1)  "tint"
 
-2)  a)  // constructor -> (first element, last element)
+2)  a)  // constructor -> (ptr to first elem, ptr to last elem)
         list<int> alist(arr, arr + sizeof(arr) / sizeof(int));
 
     b)  list<int>::iterator iter;
@@ -21,8 +27,8 @@
          where p = L.end(), that is, attempting to access a position beyond the end
          position"
 
-        If using a release build in Visual Studio, it appears to loop
-        back to alist.begin(). In which case
+        If we set the build type in Visual Studio to Release, it appears to loop
+        back to alist.begin(), it will run. In which case:
 
         *iter = 5
         

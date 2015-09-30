@@ -1,7 +1,12 @@
+//////////////////////////////////////////////////////////////////////////
+//  Name:       Jeremy Nims
+// Class:       CPS 272, Wed 5:30 PM
+// Assignment:  MP3, Part 3 - Prime Factorization
+//////////////////////////////////////////////////////////////////////////
+
 #pragma once
 
 #include <iostream>
-
 
 using namespace std;
 
@@ -41,7 +46,7 @@ public:
     }
 
     // compare lhs and rhs using value
-    friend bool operator< (const intEntry& lhs, const intEntry& rhs)
+    friend bool operator< (const intEntry& lhs, const intEntry& rhs) // Never used?
     {
         return lhs.value < rhs.value;
     }
