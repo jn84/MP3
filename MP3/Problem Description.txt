@@ -75,14 +75,18 @@ In the main program, write a function whose prototype is
 
 	void loadPrimes(list<intEntry>& primes, int n);
 
-that uses the intEntry class to create a list that identifies the different primes and the number of occurrences of the primes in the factorization of a number. For example, with 18, the prime 2 occurs 1 time and the prime 3 occurs 2 times.
+that uses the intEntry class to create a list that identifies the different primes and the number of occurrences of the
+primes in the factorization of a number. For example, with 18, the prime 2 occurs 1 time and the prime 3 occurs 2 times.
 
-Write a program that enters two integers m and n and uses the function loadPrimes( ) to create a list of the primes. Scan the list and output the prime factorization of each number. For instance, assume m = 60, and n = 18.
+Write a program that enters two integers m and n and uses the function loadPrimes( ) to create a list of the primes. 
+Scan the list and output the prime factorization of each number. For instance, assume m = 60, and n = 18.
 
 number 60 : 2,2		3,1		5,1		(2 * 2 * 3 * 5)
 number 18 : 2,1		3,2				(2 * 3 * 3)
 
-Create a new list that consists of all the primes that are common to the m and n lists. As you indentify each such prime, take the minimum count in the two nodes, and use that as the count in the node for the new list. For instance, 2 is a prime factor of 60, and 2 is a prime factor of 18:
+Create a new list that consists of all the primes that are common to the m and n lists.
+As you indentify each such prime, take the minimum count in the two nodes, and use that as the count in the node for the new list. 
+For instance, 2 is a prime factor of 60, and 2 is a prime factor of 18:
 
 number 60 : 2 * 2 * 3 * 5 	// 2 has count 2
 number 18 : 2 * 3 * 3		// 2 has count 1
