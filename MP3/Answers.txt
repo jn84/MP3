@@ -16,19 +16,20 @@
     d)  2
 
     e)  In the C++ standard, this is an undefined bahavior.
-        So, we can't know what might happen. There's no specification for it.
-        A debug build in Visual Studio will throw a debug assertion,
+        So, we can't know what might happen. There's no specification for 
+        it. A debug build in Visual Studio will throw a debug assertion,
         but in a release build anything could happen.
 
         The book states:
-        "An error condition occurs if an invalid position is passed as an argument to one
-         of the list operations. Reasons for a position p to be invalid include . . .
-         p results from an illegal operation, such as attempting to perform ++p,
-         where p = L.end(), that is, attempting to access a position beyond the end
-         position"
+        "An error condition occurs if an invalid position is passed as an 
+         argument to one of the list operations. Reasons for a position p to
+         be invalid include . . . p results from an illegal operation, such
+         as attempting to perform ++p, where p = L.end(), that is, 
+         attempting to access a position beyond the end position"
 
-        If we set the build type in Visual Studio to Release, it appears to loop
-        back to alist.begin(), it will run. In which case:
+        If we set the build type in Visual Studio to Release, 
+        it appears to loop back to alist.begin(), it will run. 
+        In which case:
 
         *iter = 5
         

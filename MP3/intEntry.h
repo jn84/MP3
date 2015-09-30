@@ -46,7 +46,8 @@ public:
     }
 
     // compare lhs and rhs using value
-    friend bool operator< (const intEntry& lhs, const intEntry& rhs) // Never used?
+    // Never used?
+    friend bool operator< (const intEntry& lhs, const intEntry& rhs) 
     {
         return lhs.value < rhs.value;
     }
@@ -66,4 +67,3 @@ ostream& operator<< (ostream& ostr, const intEntry& obj)
         ostr << obj.value << " ";
     return ostr;
 }
-

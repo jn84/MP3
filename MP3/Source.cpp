@@ -28,8 +28,9 @@ bool isPrime(int number);
 // Retrieves a number to factor into primes
 int getInput();
 
-// Returns a new list that contains the common prime factors of primes_1 and primes_2
-list<intEntry> getCommonPrimes(const list<intEntry>& primes_1, const list<intEntry>& primes_2);
+// Returns a new list of the common prime factors of primes_1 and primes_2
+list<intEntry> getCommonPrimes(const list<intEntry>& primes_1, 
+                               const list<intEntry>& primes_2);
 
 void main()
 {
@@ -69,10 +70,10 @@ void generatePrimeNumbers(list<int>& primes)
     // Make sure the list is empty
     primes.clear();
 
-    // Add two manually so we can ignore even numbers in the loop for efficiency
+    // Add 2 so we can ignore even numbers in the loop for efficiency
     primes.push_back(2);
 
-    // Every possible prime factor of MAX_NUMBER will be covered if we stop at ~sqrt
+    // Every prime factor of MAX_NUMBER is covered if we stop at ~sqrt
     // since any number received from input will be <= MAX_NUMBER
     for (int i = 3; i < sqrt(INT_MAX) + 1; i += 2)
         if (isPrime(i))
@@ -87,7 +88,7 @@ void loadPrimes(list<intEntry>& primes, int n)
     static bool isPrimeNumbersInitialized = false;
     if (!isPrimeNumbersInitialized)
     {
-        // Fill the list with all the primes that could be factors of type int
+       // Fill the list with all the primes that could be factors of INT_MAX
         generatePrimeNumbers(primeNumbers);
         isPrimeNumbersInitialized = true;
     }
@@ -131,13 +132,13 @@ void printFactors(const list<intEntry>& primeList)
 
 bool isPrime(int number)
 {
-    // Handle 2 manually so we can ignore even numbers in the loop for efficiency
+    // Handle 2 manually so we can ignore even numbers in the loop
     if (number == 2)
         return true;
     if (number % 2 == 0)
         return false;
 
-    // - Every possible prime factor of 'number' will be covered if we stop at ~sqrt
+    // - Every prime factor of 'number' will be covered if we stop at ~sqrt
     // - Skip even numbers for efficiency
     for (int i = 3; i < sqrt(number) + 1; i += 2)
         if (number % i == 0)
@@ -163,7 +164,8 @@ int getInput()
     return (int)inputNumber;
 }
 
-list<intEntry> getCommonPrimes(const list<intEntry>& primes_1, const list<intEntry>& primes_2)
+list<intEntry> getCommonPrimes(const list<intEntry>& primes_1, 
+                               const list<intEntry>& primes_2)
 {
     list<intEntry> newList;
     for each (intEntry num_1 in primes_1)
