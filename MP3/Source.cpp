@@ -4,17 +4,30 @@
 
 using namespace std;
 
+// Calculates and returns the number represented by the primes list
+int gcd(const list<intEntry>& primes);
+
+// Clears, then fills primes list with prime numbers
 void generatePrimeNumbers(list<int>& primes);
+
+// Clears, then fills the primes list with the prime factors of n
 void loadPrimes(list<intEntry>& primes, int n);
+
+// Prints the prime factors stored in primeList
 void printFactors(const list<intEntry>& primeList);
+
+// Returns true if number is a prime number
 bool isPrime(int number);
+
+// Retrieves a number to factor into primes
 int getInput();
-int calculateNumber(const list<intEntry>& primes);
+
+// Returns a new list that contains the common prime factors of primes_1 and primes_2
 list<intEntry> getCommonPrimes(const list<intEntry>& primes_1, const list<intEntry>& primes_2);
 
 void main()
 {
-    int inputNumber_1, inputNumber_2, gcd;
+    int inputNumber_1, inputNumber_2, greatestFactor;
     list<intEntry> primeList_1, primeList_2, commonPrimesList;
     
     inputNumber_1 = getInput();
@@ -23,18 +36,26 @@ void main()
     loadPrimes(primeList_1, inputNumber_1);
     loadPrimes(primeList_2, inputNumber_2);
     commonPrimesList = getCommonPrimes(primeList_1, primeList_2);
-    gcd = calculateNumber(commonPrimesList);
+    greatestFactor = gcd(commonPrimesList);
     
     cout << endl << "Number " << inputNumber_1 << ": " << endl;
     printFactors(primeList_1);
     cout << endl << "Number " << inputNumber_1 << ": " << endl;
     printFactors(primeList_2);
     cout << endl
-        << "The greatest common denominator of "
+        << "The greatest common factor of "
         << inputNumber_1 << " and " << inputNumber_2
-        << " is " << gcd << endl;
-    cout << "Number " << gcd << ": " << endl;
+        << " is " << greatestFactor << endl;
+    cout << "Number " << greatestFactor << ": " << endl;
     printFactors(commonPrimesList);
+}
+
+int gcd(const list<intEntry>& primes)
+{
+    int gcd = 1;
+    for each (intEntry elem in primes)
+        gcd *= pow(elem.getValue(), elem.getCount());
+    return gcd;
 }
 
 void generatePrimeNumbers(list<int>& primes)
@@ -64,8 +85,10 @@ void loadPrimes(list<intEntry>& primes, int n)
         generatePrimeNumbers(primeNumbers);
         isPrimeNumbersInitialized = true;
     }
+    primes.clear();
     for each (int elem in primeNumbers)
     {
+        // If elem is a factor, push it to the list.
         if (n % elem == 0)
         {
             primes.push_back(elem);
@@ -73,11 +96,13 @@ void loadPrimes(list<intEntry>& primes, int n)
         }
         else
             continue;
+        // If elem is still a factor, increment the list element
         while (n % elem == 0)
         {
             primes.back().increment();
             n /= elem;
         }
+        // Found all the factors; stop looking
         if (n == 1)
             break;
     }
@@ -91,7 +116,7 @@ void printFactors(const list<intEntry>& primeList)
 {
     cout << "Prime Factors: ";
     for each (intEntry elem in primeList)
-        cout << elem.getValue() << ", " << elem.getCount() << "    ";
+        cout << elem.getValue() << "^" << elem.getCount() << "    ";
     cout << "( ";
     for each (intEntry elem in primeList)
         cout << elem;
@@ -100,7 +125,7 @@ void printFactors(const list<intEntry>& primeList)
 
 bool isPrime(int number)
 {
-    // Handle two manually so we can ignore even numbers in the loop for efficiency
+    // Handle 2 manually so we can ignore even numbers in the loop for efficiency
     if (number == 2)
         return true;
     if (number % 2 == 0)
@@ -130,14 +155,6 @@ int getInput()
         cin >> inputNumber;
     }
     return (int)inputNumber;
-}
-
-int calculateNumber(const list<intEntry>& primes)
-{
-    int gcd = 1;
-    for each (intEntry elem in primes)
-        gcd *= pow(elem.getValue(), elem.getCount());
-    return gcd;
 }
 
 list<intEntry> getCommonPrimes(const list<intEntry>& primes_1, const list<intEntry>& primes_2)
